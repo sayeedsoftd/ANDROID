@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="#e040fb"
+
+    >
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="About bangladesh"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:gravity="center"
+                />
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:src="@drawable/sayeed88"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="10dp"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                >
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/tiger"
+                    android:scaleType="centerCrop"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                   android:layout_marginRight="10dp"
+                    />
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/deer"
+                    android:scaleType="centerCrop"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    />
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/sunrise"
+                    android:scaleType="centerCrop"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bangladesh has a land of enormous natural beauty, hundreds of rivers, crystal clear water, lakes surrounded by green hills, tropical rain forests, world's largest mangrove forest, home of the Royal Bengal Tiger and the wild lives."
+                android:textSize="20dp"
+                android:textStyle="italic"
+                android:textColor="@color/white"
+                android:gravity="left"
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:src="@drawable/flower"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="10dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bangladesh has been aptly described as a new state in an ancient land. Much has been written about the past glory of Bangladesh, notably in old records like the evidence of Pliny and Periplus of the Erythrean Sea (first century AD). It was drawn in Ptolemy's map. These indicate that from the earliest times Bangladesh was known to the West, particularly for its Muslin, the finest fabric the world has ever produced. Travellers and scholars who were attracted by the charms and fame of Bangladesh since time immemorial had showered effusive epithets on its bounties and wealth, affluence and prosperity, craftsmanship and cultural advancement.
+
+
+They include the Chinese travellers Fa-hien (fourth century AD), Hue-an-tsung (seventh century), Ma-hoen and Fei-shin (fifteenth century), Ibne Batuta (fourteenth century) from Africa, Nicola Kanti (fifteenth century) and Ceasar the Frederik (sixteenth century) from Venice, Verthema, an Italian in the sixteenth century, Barbosa and Sebastin Manric (sixteenth century) from Portugal, Travernier and Bernier from France (seventeenth century) and Queen Elizabeth-the First's ambassador Ralf Fish.
+
+
+To Ibne Batuta, Bangladesh was a 'hell full of bounties and wealthiest and cheapest land of the world.' So great were the attractions of Bangladesh that to quote Bernier 'it has a hundred gates open for entrance but not one for departure.' Ladies of Imperial Rome were literally crazy for Bangladesh's Muslin and luxury items, which according to Pliny, resulted in serious drain of gold of the Empire. Because of its location, Bangladesh served as a flourishing entry port and intermediary in trade and commerce between South Asia and the Far East. The region also played a seminal role in disseminating its belief art and architecture in the wider world of Asia. Ancient Bangladesh took great pride as a coveted seat of learning and education and scholars from far away countries regularly flocked to its numerous universities and monasteries."
+                android:textSize="20dp"
+                android:textStyle="italic"
+                android:textColor="@color/white"
+                android:gravity="left"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="click heare"
+                android:layout_marginBottom="50dp"
+                android:backgroundTint="@color/black"
+
+                />
+
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+
+
+</LinearLayout>
