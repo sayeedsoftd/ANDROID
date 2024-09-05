@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    android:background="@drawable/cover"
+
+
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="30"
+        >
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:layout_weight="10"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/like"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LIKE"
+                android:textColor="@color/white"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:layout_weight="10"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/comment"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COMMENT"
+                android:textColor="@color/white"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:layout_weight="10"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/share"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SHARE"
+                android:textColor="@color/white"
+                />
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
+
+
