@@ -1,0 +1,345 @@
+activity_main.xml--------
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="#f1c40f"
+    android:layout_margin="20dp"
+    >
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/tiger"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/bShow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show img" />
+
+    <Button
+        android:id="@+id/bGone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go away" />
+
+    <Button
+        android:id="@+id/tost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Click Tost" />
+    <TextView
+        android:id="@+id/tvNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go to second activity"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:background="@color/black"
+        android:textColor="@color/white"
+        android:layout_margin="20dp"
+        android:padding="20dp"
+        />
+
+
+</LinearLayout>
+
+
+
+MainActivity.java---------
+
+
+package com.example.visibilitytoast;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+    ImageView image;
+    Button bShow,bGone;
+    Button tost;
+    TextView tvNext;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {  
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        image=findViewById(R.id.image);
+        bShow=findViewById(R.id.bShow);
+        bGone=findViewById(R.id.bGone);
+        tost=findViewById(R.id.tost);
+        tvNext=findViewById(R.id.tvNext);
+
+
+        tvNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // ak page theke onno page a juar janno Intent use kora huy
+                Intent myIntent=new Intent(MainActivity.this,SecondActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
+
+       bShow.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+
+               image.setVisibility(View.VISIBLE);
+           }
+       });
+       bGone.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+
+               image.setVisibility(View.GONE);
+           }
+       });
+       tost.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               // firstly write Tost than .makeText(ji class a aci oi class . this , message time duration  than show
+               Toast.makeText(MainActivity.this,"I am sayeed",Toast.LENGTH_LONG).show();
+           }
+       });
+
+
+    }
+}
+
+
+
+activity_second.xml---------
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SecondActivity"
+    android:orientation="vertical"
+
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        >
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           >
+           <TextView
+               android:id="@+id/textView"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Digital Bangladesh"
+               android:textSize="30dp"
+               android:gravity="center"
+               android:textStyle="italic"
+               />
+           <ImageView
+               android:layout_width="match_parent"
+               android:layout_height="300dp"
+               android:src="@drawable/map"
+               android:layout_marginTop="10dp"
+               android:scaleType="centerCrop"
+               />
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="The Digital Bangladesh Vision, declared on December 12, 2008 by the honourable prime minister, Sheikh Hasina, brought about significant improvements for the economic, educational and social inequality factors that determine the digital divide, including income, access to digitised services, and socioeconomic factors."
+               android:textStyle="bold"
+               android:gravity="left"
+               android:layout_marginTop="20dp"
+               />
+           <ImageView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:src="@drawable/map1"
+               android:layout_marginTop="20dp"
+               android:scaleType="centerCrop"
+               />
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="The core objective of “Digital Bangladesh” is safeguarding people's democracy and rights, transparency, accountability, creating justice, and assuring delivery of government services to citizens' doorsteps through the use of technology; with the ultimate objective of improving people's lives. There are Four Pillars of “Digital Bangladesh”, they are as follows:
+
+• Digital Government
+
+• Human Resource Development
+
+• IT Industry Promotion
+
+• Connecting Citizen"
+               android:textStyle="bold"
+               android:gravity="left"
+               android:textColor="#ff0000"
+               android:layout_marginTop="20dp"
+               />
+
+           <TextView
+               android:id="@+id/tvDsplay"
+               android:layout_width="match_parent"
+               android:layout_height="100dp"
+               android:textSize="50dp"
+               android:text="0"
+               android:layout_marginTop="20dp"
+               android:gravity="center"
+               />
+
+           <Button
+               android:id="@+id/button1"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Add one" />
+
+           <Button
+               android:id="@+id/button2"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Minus one" />
+
+           <Button
+               android:id="@+id/button3"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Fresh"
+
+               />
+           <Button
+               android:id="@+id/tost"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Click tost"
+               android:gravity="center"
+               />
+           <TextView
+               android:id="@+id/tvNext1"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Go to first activity"
+               android:gravity="center"
+               android:textSize="20dp"
+               android:background="@color/black"
+               android:textColor="@color/white"
+               android:layout_margin="20dp"
+               android:padding="20dp"
+               />
+
+
+       </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+</LinearLayout>
+
+
+
+SecondActivity.java--------
+
+
+
+package com.example.visibilitytoast;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class SecondActivity extends AppCompatActivity {
+    TextView tvDsplay;
+    Button button1,button2,button3;
+    Button tost;
+    int count=0;
+    TextView tvNext1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+        tvDsplay=findViewById(R.id.tvDsplay);
+        button1=findViewById(R.id.button1);
+        button2=findViewById(R.id.button2);
+        button3=findViewById(R.id.button3);
+        tost=findViewById(R.id.tost);
+        tvNext1=findViewById(R.id.tvNext1);
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                count+=1;
+                tvDsplay.setText(""+count);
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                count-=1;
+                tvDsplay.setText(""+count);
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                count=0;
+                tvDsplay.setText(""+count);
+            }
+        });
+        tost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(SecondActivity.this,"Thank you",Toast.LENGTH_LONG).show();
+            }
+        });
+        tvNext1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // ak activity theke onno activity juar janno Intent use kora huy 
+                Intent myintent1=new Intent(SecondActivity.this,MainActivity.class);
+                startActivity(myintent1);
+            }
+        });
+
+
+
+    }
+}
