@@ -1,0 +1,56 @@
+{ android internet permission manifest(copy google and set manyfest)
+# <uses-permission android:name="android.permission.INTERNET" />
+set under application }
+
+
+MainActivity.java------------
+
+package com.example.web_browser;
+
+import android.os.Bundle;
+import android.webkit.WebView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+    WebView mWebView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mWebView=findViewById(R.id.mWebView);
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.loadUrl("https://evaly.com.bd/");
+
+    }
+}
+
+
+
+main_activity.xml--------
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <WebView
+        android:id="@+id/mWebView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        />
+
+
+</LinearLayout>
