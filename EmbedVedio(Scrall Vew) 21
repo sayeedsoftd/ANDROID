@@ -1,0 +1,322 @@
+activity_main.xml-------
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="290dp"
+        android:src="@drawable/jems1"
+
+        android:scaleType="centerCrop"
+        />
+    <!-- Album 1 -->
+
+    <LinearLayout
+        android:id="@+id/laysong1"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:background="#808080"
+        >
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@drawable/jems1"
+            />
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="কিসের এত দুঃখ তোমার সারাক্ষণ বসে বসে ভাবছো "
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I hope you like the song a lot. So enjoy the song "
+                android:textSize="20sp"
+                android:textStyle="normal"
+                />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Duration:5:17"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <!-- Album 2 -->
+
+    <LinearLayout
+        android:id="@+id/laysong2"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:background="#808080"
+        >
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@drawable/jems2"
+            />
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="কবিতা তুমি স্বপ্নচারিনী হয়ে | "
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="কবিতা, তুমি স্বপ্নচারিণী হয়ে খবর নিও না
+কবিতা, এই নিশাচর আমায় ভেবোনা সুখের মোহনা। "
+                android:textSize="20sp"
+                android:textStyle="normal"
+                android:lines="2"
+
+                />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Duration:6:43"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+        <!-- Album 3 -->
+
+        <LinearLayout
+            android:id="@+id/laysong3"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:background="#808080"
+            >
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:src="@drawable/jems"
+                />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="পৃথিবী বদলে গেছে, বদলে গিয়েছো তুমি,,"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="জীবনের গল্প বড়ই অদ্ভুত।  এই গান গুলো জন্ম থেকে জন্মান্তর বেচে থাকুক "
+                    android:textSize="20sp"
+                    android:textStyle="normal"
+
+                    />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Duration:3:43"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="italic" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+
+2...MainActivity.java-------
+
+
+
+
+package com.example.embadvedio1;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+LinearLayout laysong1,laysong2,laysong3;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        laysong1=findViewById(R.id.laysong1);
+        laysong2=findViewById(R.id.laysong2);
+        laysong3=findViewById(R.id.laysong3);
+        laysong1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                VedioPlayer.vedio="https://www.youtube.com/embed/tsMakd5YcVM";
+                Intent intent=new Intent(MainActivity.this,VedioPlayer.class);
+                startActivity(intent);
+
+            }
+        });
+        laysong2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                VedioPlayer.vedio="https://www.youtube.com/embed/CPZx_bsbOnk";
+                Intent intent=new Intent(MainActivity.this,VedioPlayer.class);
+                startActivity(intent);
+
+            }
+        });
+        laysong3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                VedioPlayer.vedio="https://www.youtube.com/embed/kcqi9BZM5uE";
+                Intent intent=new Intent(MainActivity.this,VedioPlayer.class);
+                startActivity(intent);
+
+            }
+        });
+
+    }
+}
+
+
+
+
+3...vedio_player.xml-------
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VedioPlayer"
+    android:orientation="vertical">
+
+    <WebView
+        android:id="@+id/webvew"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+</LinearLayout>
+
+
+
+4...VedioPlayer.java------
+
+
+
+package com.example.embadvedio1;
+
+import android.os.Bundle;
+import android.webkit.WebView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class VedioPlayer extends AppCompatActivity {
+  public static WebView webvew;
+    public static String vedio="";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.vedio_player);
+        webvew=findViewById(R.id.webvew);
+        webvew.getSettings().setJavaScriptEnabled(true);
+        webvew.loadUrl(vedio);
+
+
+
+    }
+}
