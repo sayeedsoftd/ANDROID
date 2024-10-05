@@ -1,0 +1,81 @@
+1. Activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        />
+
+</RelativeLayout>
+
+
+
+
+2.MainActivity.java
+
+
+
+package com.example.vedio_background;
+
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Bundle;
+import android.widget.VideoView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+VideoView videoView;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        //getSupportActionBar().hide();
+        videoView=findViewById(R.id.videoView);
+        Uri uri=Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.back_video);
+        videoView.setVideoURI(uri);
+        videoView.start();
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mediaPlayer.setLooping(true);
+            }
+        });
+    }
+
+    protected void onPastResum(){
+        videoView.resume();
+        super.onPostResume();
+
+    }
+    protected void onRestart()
+    {
+        videoView.start();
+        super.onRestart();
+    }
+    protected void onPause()
+    {
+        videoView.suspend();
+        super.onPause();
+    }
+    protected void onDestroy()
+    {
+        videoView.stopPlayback();
+        super.onDestroy();
+    }
+}
