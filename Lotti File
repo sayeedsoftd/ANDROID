@@ -1,0 +1,82 @@
+1. activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+
+
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       >
+
+       <com.airbnb.lottie.LottieAnimationView
+           android:id="@+id/animationView"
+           android:layout_width="match_parent"
+           android:layout_height="400dp"
+           app:lottie_url="REPLACE_JSON_URL"
+           app:lottie_rawRes="@raw/gift"
+           app:lottie_autoPlay="true"
+           app:lottie_loop="true"/>
+
+       <Button
+           android:id="@+id/button"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="5dp"
+           android:text="Button" />
+   </LinearLayout>
+
+
+</RelativeLayout>
+
+
+2.ActivityMain.java
+
+
+package com.example.lotti_file;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.airbnb.lottie.LottieAnimationView;
+
+public class MainActivity extends AppCompatActivity {
+    LottieAnimationView animationView;
+    Button button;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        animationView=findViewById(R.id.animationView);
+        button=findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animationView.setAnimation(R.raw.handshake);
+                animationView.playAnimation();
+            }
+        });
+
+    }
+}
+
+
+***must be download JNOS file when download file ****
