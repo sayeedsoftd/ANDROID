@@ -1,0 +1,197 @@
+1.active_main.xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tollbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/app_name"
+
+        />
+
+    <LinearLayout
+        android:layout_below="@+id/tollbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/number"
+            android:textSize="18sp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_your_number"
+
+
+            />
+
+        <Button
+            android:id="@+id/btotp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/send_otp" />
+
+        <Button
+            android:id="@+id/btchangelanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/change_language" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+2..MainActivity.java
+
+
+package com.example.bmi_calculator;
+
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import java.util.Locale;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        loadLanguage();
+        setContentView(R.layout.activity_main);
+        findViewById(R.id.btchangelanguage).setOnClickListener(view ->{
+            showLanguageDialoge();
+        });
+
+    }
+
+    private void showLanguageDialoge() {
+        final String[] languageList={"English","বাংলা","عربي"};
+        SharedPreferences sharedPreferences=getSharedPreferences("language seetings",MODE_PRIVATE);
+        int item=sharedPreferences.getInt("item",0);
+        AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(getString(R.string.select_language));
+        builder.setSingleChoiceItems(languageList, item, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int position) {
+                if (position==0){
+                    setLanguage("en",0);
+                    recreate();
+                } else if (position==1) {
+                    setLanguage("bn",1);
+                    recreate();
+
+                }
+
+                else if (position==2) {
+                    setLanguage("ar",2);
+                    recreate();
+
+                }
+                // noticable point
+                dialogInterface.dismiss();
+
+            }
+
+
+        });
+        builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog=builder.create();
+        alertDialog.show();
+
+    }
+     private void setLanguage(String language, int item) {
+        Locale locale=new Locale(language);
+        Locale.setDefault(locale);
+        Configuration configuration=new Configuration();
+        configuration.locale=locale;
+        getBaseContext().getResources().updateConfiguration(configuration,getBaseContext().getResources().getDisplayMetrics());
+
+        // set language
+        SharedPreferences.Editor editor=getSharedPreferences("language seetings",MODE_PRIVATE).edit();
+        editor.putString("language",language);
+        editor.putInt("item",item);
+        editor.apply();
+
+
+    }// set language end here
+
+    private  void loadLanguage()
+    {
+        SharedPreferences sharedPreferences=getSharedPreferences("language seetings",MODE_PRIVATE);
+        String language =sharedPreferences.getString("language","en");
+        int item=sharedPreferences.getInt("item",0);
+        setLanguage(language,item);
+    }//load language end here
+
+} 
+
+
+
+NOTE-----------
+
+{   wright button click + select (open translator edittor)+ set language   }******
+
+<resources>
+    <string name="app_name">BMI_Calculator</string>
+    <string name="select_language">Select language</string>
+    <string name="change_language">Change Language</string>
+    <string name="send_otp">Send otp</string>
+    <string name="enter_your_number">Enter your number </string>
+    <string name="number"> Number</string>
+
+
+</resources>
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BMI_Calculator</string>
+
+    <string name="select_language">اختر اللغة</string>
+    <string name="change_language">تغيير اللغة</string>
+    <string name="send_otp">أرسل لمرة واحدة</string>
+    <string name="enter_your_number">أدخل رقمك </string>
+    <string name="number"> رقم</string>
+</resources>
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BMI_Calculator</string>
+
+    <string name="select_language">ভাষা নির্বাচন করুন</string>
+    <string name="change_language">ভাষা পরিবর্তন করুন</string>
+    <string name="send_otp">ওটিপি পাঠান</string>
+    <string name="enter_your_number">আপনার নম্বর লিখুন </string>
+    <string name="number"> সংখ্যা</string>
+</resources>
