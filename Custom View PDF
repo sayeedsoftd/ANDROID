@@ -1,0 +1,98 @@
+১। PDF Library
+কোডঃ
+implementation 'com.github.DImuthuUpe:AndroidPdfViewer:3.1.0-beta.1'
+২। settings.gradle > inside the repositories
+কোডঃ
+maven { url 'https://jitpack.io' }
+৩। gradle.properties
+কোডঃ
+android.enableJetifier=true
+
+*****right button >>app>>new>>folder>>asset(pest pdf file )****
+
+
+activity_main.xml-------
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:lottie_rawRes="@raw/anim1"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
+
+</RelativeLayout>
+
+
+
+
+MainActivity.java-------
+
+
+package com.example.custom_pdf_vew_app;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.airbnb.lottie.LottieAnimationView;
+import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
+
+public class MainActivity extends AppCompatActivity {
+    PDFView pdfView;
+    LottieAnimationView animationView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        pdfView=findViewById(R.id.pdfView);
+        animationView=findViewById(R.id.animationView);
+
+        pdfView.setVisibility(View.INVISIBLE);
+        animationView.setVisibility(View.VISIBLE);
+
+
+        pdfView.fromAsset("pdf1.pdf")
+                .onLoad(new OnLoadCompleteListener() {
+                    @Override
+                    public void loadComplete(int nbPages) {
+                        pdfView.setVisibility(View.VISIBLE);
+                        animationView.setVisibility(View.GONE);
+                        Toast.makeText(MainActivity.this,"loading",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .load();
+
+    }
+}
+
+
+
+
+
