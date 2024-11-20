@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/mylay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+ >
+            <EditText
+                android:id="@+id/edn1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Enter the number"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                />
+            <EditText
+                android:id="@+id/edn2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Enter the amount"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                />
+            <Button
+                android:id="@+id/bclick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Click Hear"
+                />
+            <TextView
+                android:id="@+id/tvdisplay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginTop="10dp"
+                />
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
+----------------------------------------------------
+
+
+ package com.example.loop;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+    EditText edn1, edn2;
+    TextView tvdisplay;
+    Button bclick;
+    LinearLayout mylay;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        edn1=findViewById(R.id.edn1);
+        edn2=findViewById(R.id.edn2);
+        tvdisplay=findViewById(R.id.tvdisplay);
+        bclick=findViewById(R.id.bclick);
+        mylay=findViewById(R.id.mylay);
+
+        bclick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               String myString=edn1.getText().toString();
+               int myint=Integer.parseInt(myString);
+
+                String myString1=edn2.getText().toString();
+                int myint1=Integer.parseInt(myString1);
+                for (int i=myint;i<myint1;i++){
+                    //tvdisplay.append(" "+i);
+
+                    Button button=new Button(MainActivity.this);
+                    button.setText("button"+i);
+                    mylay.addView(button);
+
+
+
+
+                }
+
+            }
+        });
+
+
+
+
+
+    }
+}
