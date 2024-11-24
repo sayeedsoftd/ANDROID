@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:padding="10dp"
+       >
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           >
+
+
+           <EditText
+               android:id="@+id/edname"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:inputType="textPersonName"
+               android:hint="Enter The Name "
+               android:layout_marginTop="15dp"
+               android:textColor="@android:color/holo_red_dark"
+               android:textColorHint="@color/design_default_color_error"
+               />
+           <EditText
+               android:id="@+id/edemail"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:inputType="textEmailAddress"
+               android:hint="Enter The Email "
+               android:layout_marginTop="15dp"
+               android:textColor="@android:color/holo_red_dark"
+               android:textColorHint="@color/design_default_color_error"
+               />
+           <EditText
+               android:id="@+id/edvoterid"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:inputType="number"
+               android:hint="Enter The Voter ID "
+               android:layout_marginTop="15dp"
+               android:textColor="@android:color/holo_red_dark"
+               android:textColorHint="@color/design_default_color_error"
+               />
+           <EditText
+               android:id="@+id/edpassport"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:inputType="number"
+               android:hint="Enter The Passport ID "
+               android:layout_marginTop="15dp"
+               android:textColor="@android:color/holo_red_dark"
+               android:textColorHint="@color/design_default_color_error"
+               />
+           <EditText
+               android:id="@+id/edstudent"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:inputType="number"
+               android:hint="Enter The Student ID "
+               android:layout_marginTop="15dp"
+               android:textColor="@android:color/holo_red_dark"
+               android:textColorHint="@color/design_default_color_error"
+               />
+           <Button
+               android:id="@+id/bsave"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Save Data"
+               android:layout_gravity="center"
+               android:layout_marginTop="15dp"
+               />
+           <Button
+               android:id="@+id/bshow"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Show Data"
+               android:layout_gravity="center"
+               android:layout_marginTop="15dp"
+               />
+
+
+
+package com.example.shareprefarence;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+    EditText edname;
+    Button bsave,bshow;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    EditText edemail;
+    EditText edvoterid;
+    EditText edpassport;
+    EditText edstudent;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        edname=findViewById(R.id.edname);
+        edemail=findViewById(R.id.edemail);
+        bsave=findViewById(R.id.bsave);
+        bshow=findViewById(R.id.bshow);
+        edvoterid=findViewById(R.id.edvoterid);
+        edpassport=findViewById(R.id.edpassport);
+        edstudent=findViewById(R.id.edstudent);
+//---------------------
+        sharedPreferences=getSharedPreferences(""+getString(R.string.app_name),MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+        //------------------------
+
+        bsave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //------
+                String name=edname.getText().toString();
+                editor.putString("name"," "+name);// First string set key // second store value
+                editor.apply();
+                //-------
+                //------
+                String email=edemail.getText().toString();
+                editor.putString("email"," "+email);// First string set key // second store value
+                editor.apply();
+                //-------
+                int voterID=Integer.parseInt(edvoterid.getText().toString());
+               editor.putInt("votre",voterID);
+               editor.apply();
+                //-------
+                int passportID=Integer.parseInt(edpassport.getText().toString());
+                editor.putInt("Passport ID ",passportID);
+                editor.apply();
+                //-------
+                int studentID=Integer.parseInt(edstudent.getText().toString());
+                editor.putInt("Student ID ",studentID);
+                editor.apply();
+                //-------
+
+            }
+        });
+
+        bshow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SharePreference1.class));
+
+            }
+        });
+
+
+
+    }
+}
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SharePreference1"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tvdisplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" "
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:background="@color/design_default_color_secondary_variant"
+        />
+</RelativeLayout>
+
+
+
+package com.example.shareprefarence;
+
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class SharePreference1 extends AppCompatActivity {
+    TextView tvdisplay;
+    SharedPreferences sharedPreferences;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_share_preference1);
+        tvdisplay=findViewById(R.id.tvdisplay);
+        sharedPreferences=getSharedPreferences(getString(R.string.app_name),MODE_PRIVATE);
+
+        //------------
+        String mystring=sharedPreferences.getString("name","");
+        tvdisplay.append("Name: "+mystring+"\n");
+        //---------
+        //------------
+        String myEmail=sharedPreferences.getString("email","");
+        tvdisplay.append("Email: "+myEmail+"\n");
+        //---------
+        int vid=sharedPreferences.getInt("votre",0);
+        tvdisplay.append("Voter ID: "+vid+"\n");
+        //----------
+        int pid=sharedPreferences.getInt("Passport ID ",0);
+        tvdisplay.append("Passport ID: "+pid +"\n");
+        //----------
+        int sid=sharedPreferences.getInt("Student ID ",0);
+        tvdisplay.append("Student ID : "+sid);
+        //----------
+
+    }
+}
+
+       </LinearLayout>
+   </ScrollView>
+
+</RelativeLayout>
