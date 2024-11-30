@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <include
+            layout="@layout/new_layout"
+            />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Abu Sayeed"
+                android:gravity="center"
+                android:textSize="40sp"
+                />
+           <ImageView
+               android:layout_width="350dp"
+               android:layout_height="300dp"
+               android:src="@drawable/fox"
+               android:layout_gravity="center"
+
+               />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Here's a step-by-step guide on how to add an image to your Android Studio project and display it in your app layout:
+
+1. Add the Image to Your Project:
+
+Right-click on the res folder in your project.
+Select New > Image Asset.
+Choose the Image Asset Type as Image.
+Click Next.
+Browse to the location of your image file and select it.
+Set the Image Name and Source Set.
+Click Finish."
+                android:textColor="@color/design_default_color_error"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
