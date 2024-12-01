@@ -1,0 +1,87 @@
+<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:paddingBottom="5dp"
+            android:background="@color/material_dynamic_neutral50"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NATIONAL SONG"
+                android:layout_marginTop="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/design_default_color_error"
+                />
+            <ImageView
+                android:id="@+id/iplay"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:onClick="Clkplay"
+                android:src="@drawable/play"
+                android:layout_marginLeft="29dp"
+                />
+            <ImageView
+                android:id="@+id/ipose"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/pose"
+                android:onClick="Clkpose"
+                android:layout_marginLeft="10dp"
+                />
+            <ImageView
+                android:id="@+id/istop"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/stop"
+                android:onClick="Clkstop"
+                android:layout_marginLeft="5dp"
+                />
+        </LinearLayout>
+
+
+
+
+
+package com.example.xml_insert;
+
+import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+    ImageView iplay,ipose,istop;
+    MediaPlayer mediaPlayer;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        iplay=findViewById(R.id.iplay);
+        ipose=findViewById(R.id.ipose);
+        istop=findViewById(R.id.istop);
+        mediaPlayer=MediaPlayer.create(MainActivity.this,R.raw.song);
+
+    }
+    public void Clkplay(View v)
+    {
+        mediaPlayer.start();
+    }
+    public void Clkpose(View v)
+    {
+        mediaPlayer.pause();
+    }
+    public void Clkstop(View v)
+    {
+        mediaPlayer.stop();
+        mediaPlayer=MediaPlayer.create(MainActivity.this,R.raw.song);
+    }
+}
