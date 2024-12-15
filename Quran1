@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+   <ListView
+       android:id="@+id/listview"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:padding="10dp"
+       android:layout_margin="10dp"
+       />
+
+
+</LinearLayout>
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        >
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:background="@color/material_dynamic_primary95"
+           >
+           <ImageView
+               android:id="@+id/play"
+               android:layout_width="50dp"
+               android:layout_height="50dp"
+               android:src="@drawable/play"
+               android:onClick="ClickPlay"
+               android:layout_gravity="center"
+               android:layout_marginLeft="10dp"/>
+           <ImageView
+               android:id="@+id/pose"
+               android:layout_width="50dp"
+               android:layout_height="50dp"
+               android:src="@drawable/pose"
+               android:layout_gravity="center"
+               android:onClick="ClickPause"
+               android:layout_marginLeft="10dp"/>
+           <ImageView
+               android:id="@+id/stop"
+               android:layout_width="50dp"
+               android:layout_height="50dp"
+               android:src="@drawable/stop1"
+               android:onClick="Clickstop"
+               android:layout_gravity="center"
+               android:layout_marginLeft="10dp"/>
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              >
+              <TextView
+                  android:id="@+id/text1"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Abu sayeed"
+                 android:gravity="left|center"
+                 android:layout_marginTop="5dp"
+                  android:layout_marginLeft="10dp"
+                  android:textColor="@color/black"
+                  />
+
+          </LinearLayout>
+
+
+
+
+
+
+
+       </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+
+
+
+package com.example.quran1;
+
+import android.content.Context;
+import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+
+public class MainActivity extends AppCompatActivity {
+    ListView listview;
+    ArrayList<HashMap<String,Integer>> arrayList=new ArrayList<>();
+     HashMap<String,Integer> hashMap;
+
+
+    public MediaPlayer mediaPlayer;
+    private int currentPosition = 0;
+    
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        listview=findViewById(R.id.listview);
+
+        hashMap=new HashMap<>();
+        hashMap.put("Fatiha",R.raw.fatiha);
+        hashMap.put("Al_Bakara",R.raw.al_baqarah);
+        //*** set multiple audio file here same direction
+
+        for (String key : hashMap.keySet())
+        {
+            HashMap<String, Integer> tempMap = new HashMap<>();
+            tempMap.put(key, hashMap.get(key));
+            arrayList.add(tempMap);
+        }
+
+        MyAdapter myAdapter=new MyAdapter();
+        listview.setAdapter(myAdapter);
+
+
+    }
+
+    //---------------------------------------------
+    private class MyAdapter extends BaseAdapter
+    {
+        LayoutInflater layoutInflater;
+
+        @Override
+        public int getCount() {
+            return arrayList.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return arrayList.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            if (layoutInflater == null)
+            { layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            } if (view == null)
+            { view = layoutInflater.inflate(R.layout.new_layout, viewGroup, false);
+            } ImageView play = view.findViewById(R.id.play);
+            ImageView pose = view.findViewById(R.id.pose);
+            ImageView stop = view.findViewById(R.id.stop);
+            TextView text1 = view.findViewById(R.id.text1);
+
+            HashMap<String, Integer> item = arrayList.get(i);
+            String audioName = item.keySet().iterator().next();
+            final int audioResId = item.get(audioName);
+            text1.setText(audioName);
+
+            play.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+
+                    if (mediaPlayer != null && mediaPlayer.isPlaying())
+                    { mediaPlayer.stop(); mediaPlayer.release(); }
+                    mediaPlayer = MediaPlayer.create(MainActivity.this,audioResId);
+                    mediaPlayer.seekTo(currentPosition);
+                    mediaPlayer.start(); } });
+            pose.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    if (mediaPlayer != null && mediaPlayer.isPlaying())
+                    {
+                        currentPosition = mediaPlayer.getCurrentPosition();
+                        mediaPlayer.pause();
+                } } });
+            stop.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                { if (mediaPlayer != null)
+                { mediaPlayer.stop();
+                    mediaPlayer.release();
+                    mediaPlayer = null;
+                    currentPosition = 0;} } });
+            return view;
+        }
+    }
+    //-------------------------------------------
+
+
+}
