@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/white"
+    android:orientation="vertical">
+<ListView
+    android:id="@+id/listVIew"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:listSelector="@android:color/transparent"
+    />
+
+</LinearLayout>
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        >
+        <LinearLayout
+            android:id="@+id/layItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:background="?android:attr/colorActivatedHighlight"
+            >
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                tools:srcCompat="@tools:sample/avatars"
+                android:scaleType="centerCrop"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="left|center"
+                android:layout_marginLeft="10dp">
+
+                <TextView
+                    android:id="@+id/categoryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CAT"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                   android:background="@color/cardview_shadow_start_color"
+
+                    />
+
+
+
+                <TextView
+                    android:id="@+id/titleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:maxLines="2"
+                    android:textColor="@color/black"
+                    android:ellipsize="end"/>
+
+                <TextView
+                    android:id="@+id/descriptionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:ellipsize="end"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".News_Description"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <RelativeLayout
+        android:id="@+id/laycover"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:padding="10dp"
+        >
+        <ImageView
+            android:id="@+id/coverImg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sayeed21"
+            android:scaleType="centerCrop"
+            />
+        <TextView
+            android:id="@+id/titleVar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="South Florida's digital news hub. Connecting communities, building"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/white"
+            android:background="@color/design_default_color_secondary_variant"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/laycover"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            >
+            <TextView
+                android:id="@+id/titledes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="South Florida's digital news hub. Connecting communities, building"
+                android:layout_alignParentBottom="true"
+                android:textColor="@color/black"
+
+                />
+
+        </LinearLayout>
+    </ScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/febButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="12dp"
+        android:src="@drawable/voice"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+
+        android:backgroundTint="@android:color/holo_green_dark"
+        >
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+</RelativeLayout>
+
+package com.example.news_app;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity {
+    ListView listVIew;
+    HashMap<String,String> hashMap;
+    ArrayList<HashMap<String,String>> arrayList=new ArrayList<>();
+   // HashMap<String,String> hashMap;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+       listVIew=findViewById(R.id.listVIew);
+
+
+       myTable();
+       Myadapter myadapter=new Myadapter();
+       listVIew.setAdapter(myadapter);
+
+
+    }
+    //----------------
+public class Myadapter extends BaseAdapter{
+
+    @Override
+    public int getCount() {
+        return arrayList.size();
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        LayoutInflater layoutInflater= (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View myview= layoutInflater.inflate(R.layout.new_layout,viewGroup,false);
+        ImageView imageView=myview.findViewById(R.id.imageView);
+        TextView categoryText=myview.findViewById(R.id.categoryText);
+        TextView titleText=myview.findViewById(R.id.titleText);
+        TextView descriptionText=myview.findViewById(R.id.descriptionText);
+        LinearLayout layItem=myview.findViewById(R.id.layItem);
+
+        HashMap<String,String> hashMap1=arrayList.get(i);
+        //---------
+
+        categoryText.setText(hashMap1.get("cat"));
+        String image_url=hashMap1.get("image_url");
+
+        final String title = hashMap1.get("title");
+        final String des = hashMap1.get("des");
+        titleText.setText(title);
+        descriptionText.setText(des);
+
+//-----
+        Picasso.get().load(image_url)
+                .placeholder(R.drawable.sayeed21)
+                .into(imageView);
+        //-----------
+        Random rnd = new Random();
+        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        categoryText.setBackgroundColor(color);
+        //------------------
+        layItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                News_Description.TITLEVAR=title;
+                News_Description.TITLEDES=des;
+
+                Bitmap bitmap=((BitmapDrawable) imageView.getDrawable()).getBitmap();
+                News_Description.MY_BitMap=bitmap;
+
+
+
+                startActivity(new Intent(MainActivity.this,News_Description.class));
+
+            }
+        });
+
+
+
+
+        return myview;
+    }
+}
+
+    //----------------
+    //----------------
+    public void myTable(){
+        hashMap=new HashMap<>();
+        hashMap.put("cat","Email");
+        hashMap.put("image_url","https://i0.wp.com/techzoom.tv/wp-content/uploads/2024/12/Mail-stopped-coming.jpg?resize=750%2C375&ssl=1");
+
+        hashMap.put("title","অপ্রয়োজনীয় মেইল আসা বন্ধ করবেন যেভাবে");
+        hashMap.put("des","অনলাইনে থাকার পাশাপাশি আরেকটি কাজ হল, বেছে বেছে অপ্রয়োজনীয় মেইল ডিলিট করা। মনের ভুলে \n" +
+                "বা কাজের চাপে নিজের জিমেইল অ্যাকাউন্টে আসা অপ্রয়োজনীয় ই-মেইলগুলো মুছে ফেলা আর হয়ে ওঠে না অনেকের। ইনবক্স ভরে যায় অপ্রয়োজনীয় ই-মেইলে।\n" +
+                " বেশি বেশি ই-মেইল থাকলে দরকারের সময় গুরুত্বপূর্ণ ই-মেইল খুঁজে পেতে বেশ ঝামেলা হয়।");
+        arrayList.add(hashMap);
+
+        //-----------------
+
+        hashMap=new HashMap<>();
+        hashMap.put("cat","Realme");
+        hashMap.put("image_url","https://i0.wp.com/techzoom.tv/wp-content/uploads/2024/12/realme-to-bring-C75-1.jpeg?resize=750%2C375&ssl=1");
+
+        hashMap.put("title","মিড-বাজেটের প্রথম আইপি৬৯ ওয়াটারপ্রুফ রেটিং সমৃদ্ধ স্মার্টফোন আনছে যাচ্ছে রিয়েলমি সি৭৫");
+        hashMap.put("des","তরুণদের জনপ্রিয় স্মার্টফোন ব্র্যান্ড রিয়েলমি এবার প্রথমবারের মতো আইপি৬৯ সার্টিফিকেশন পাওয়া সি-সিরিজের স্মার্টফোন বাজারে আনতে যাচ্ছে। ডিসেম্বরের ১৫ তারিখে উন্মোচন হতে যাওয়া রিয়েলমি সি৭৫ -এ আইপি৬৯ রেটিংয়ের পাশাপাশি আরও রয়েছে আইপি৬৮ ও আইপি৬৬ সার্টিফিকেশন। ফলে পানি ও ধুলাবালি থেকে ফোনটি থাকবে সম্পূর্ণ সুরক্ষিত।\n" +
+                "\n" +
+                "বাজারের অন্যান্য স্মার্টফোন যেখানে কেবল একটি বা দুটি স্তরের পানি প্রতিরোধক সুরক্ষা দেয়, রিয়েলমি সি৭৫ দিচ্ছে অল-রাউন্ড প্রটেকশন। আইপি৬৬, আইপি৬৮ ও আইপি৬৯ – প্রতিটি রেটিং আলাদাভাবে পরিপূর্ণ সুরক্ষা প্রদান করে: আইপি৬৬ পানির শক্তিশালী জেটের বিরুদ্ধে, আইপি৬৮ পানির নিচে এবং আইপি৬৯ হাই-প্রেসার, হাই-টেম্পারেচার পানির জেটের বিরুদ্ধে ফোনকে রক্ষা করে। এই তিনটি সার্টিফিকেশনের সমন্বয়ে রিয়েলমি সি৭৫ ফোনপ্রেমীকে এক অনন্য টেকসইতা প্রদান করে।\n" +
+                "\n" +
+                "রিয়েলমি সি৭৫-এর দুর্দান্ত প্রটেকশন তৈরী হয়েছে অত্যাধুনিক ওয়াটারপ্রুফিং প্রযুক্তির সাহায্যে, যার মধ্যে রয়েছে উন্নত ফোম সিল, একটি সম্পূর্ণ নতুনভাবে ডিজাইনকৃত ওয়াটারপ্রুফ কাঠামো এবং উন্নতমানের উপাদানের সমন্বয়। এছাড়াও, উদ্ভাবনী সনিকওয়েভ ওয়াটার ইজেকশন ফিচার দ্রুত স্পিকার থেকে ৫০% পর্যন্ত অতিরিক্ত পানি বের করে দিতে সাহায্য করে, যা ডিভাইসের টেকসইত্বকে আরও বাড়িয়ে তোলে।\n" +
+                "\n" +
+                "শক্তিশালী ৬০০০ এমএএইচ ব্যাটারি এবং ৪৫ ওয়াটের ফাস্ট চার্জিং থাকায়, রিয়েলমি সি৭৫ মাত্র ৩৮ মিনিটে ৫০% পর্যন্ত চার্জ করতে পারে। ৮ জিবি+১৬জিবি ডায়নামিক র\u200D্যাম থাকায় ব্যবহারকারীরা নিরবচ্ছিন্নভাবে মাল্টিটাস্কিং এবং দ্রুত অ্যাপ চালানোর দারুণ অভিজ্ঞতা পাবেন ।\n" +
+                "\n" +
+                "রিয়েলমি সি৭৫ এর মাধ্যমে উদ্ভাবন আর গুণগতমানের উৎকর্ষতা ব্যবহারকারীদের কাছে পৌঁছে দিতে রিয়েলমি তার প্রতিশ্রুতি বজায় রেখেছে।");
+        arrayList.add(hashMap);
+        //------------------------
+        hashMap=new HashMap<>();
+        hashMap.put("cat","Samsung");
+        hashMap.put("image_url","https://i0.wp.com/techzoom.tv/wp-content/uploads/2024/12/Oppo-phone-price-2024.webp?resize=1140%2C570&ssl=1");
+
+        hashMap.put("title","স্যামসাংয়ের কাছে শীর্ষস্থান হারিয়েছে শাওমি");
+        hashMap.put("des","স্মার্টফোনের বাজারে সাশ্রয়ীমূল্যে ডিভাইস সরবরাহের দিক থেকে শাওমি অন্যতম। বিশেষ করে এশিয়ার দেশ ভারতে প্রতিষ্ঠানটির বড় ধরনের ব্যবহারকারী রয়েছে। চাহিদা অনুযায়ী জোগান দিতে কারখানাও স্থাপন করেছে, কিন্তু দেশটিতে ফ্ল্যাগশিপ ডিভাইস বাজারজাতে শাওমি একেবারেই শ্লথগতিতে এগোচ্ছিল। আর এ সুযোগ কাজে লাগিয়ে বিশ্বের দ্বিতীয় বৃহত্তম বাজারে পুনরায় শীর্ষস্থান দখল করেছে স্যামসাং ইলেকট্রনিকস। বর্তমানে শাওমি পুনরায় হিস্যা বাড়াতে পরিকল্পনা পরিবর্তন করছে।\n" +
+                "\n" +
+                "বার্তা সংস্থা রয়টার্সের খবরে বলা হয়, চীনের প্রতিষ্ঠান শাওমি ১২০ ডলার বা ১০ হাজার রুপির কম ডিভাইস বাজারজাতে বেশি মনোযোগ দিয়েছে, কিন্তু ভারতের গ্রাহক আরো ভালো ডিজাইনের উন্নত ফিচারযুক্ত ডিভাইস ক্রয়ে আগ্রহী হয়ে ওঠেন। অন্যদিকে দক্ষিণ কোরিয়ার প্রযুক্তি জায়ান্ট স্যামসাং গ্রাহকের চাহিদা অনুযায়ী ডিভাইস বাজারজাত করেছে। পাশাপাশি ডিভাইস কেনার জন্য সহজ ফাইন্যান্সিং স্কিম চালু করেছে। যে কারণে দেশটির ক্রেতাদের কাছে ডিভাইস সংগ্রহ আরো সহজ হয়েছে।\n" +
+                "\n" +
+                "হংকংভিত্তিক কাউন্টারপয়েন্ট রিসার্চের তথ্যানুযায়ী, এসব উদ্যোগের কারণে ভারতের প্রতিযোগিতাপূর্ণ বাজারে শাওমিকে হটিয়ে শীর্ষস্থান দখলে নিতে পেরেছে স্যামসাং। ২০২২ সালের শেষ প্রান্তিকে প্রতিষ্ঠানটির বাজার হিস্যা ছিল ২০ শতাংশ। যেখানে শাওমির হিস্যা ছিল ১৮ শতাংশ।\n" +
+                "\n" +
+                "কাউন্টারপয়েন্টের গবেষণা পরিচালক তরুণ পাঠক বলেন, ‘\u200Cভারতের বাজারে বর্তমানে প্রিমিয়ামাইজেশন চলছে। সেখানে সাশ্রয়ীমূল্যের ফোন বেশি থাকায় শাওমি এ পরিবর্তনের সঙ্গে খাপ খাওয়াতে পারছে না।’\n" +
+                "\n" +
+                "চীনের পর স্মার্টফোন ব্যবহারকারী ও বাজারের দিক থেকে ভারত দ্বিতীয় অবস্থানে আছে। দেশটির স্মার্টফোন ব্যবহারকারীর সংখ্যা ৬২ কোটি ৬০ লাখের বেশি। দ্রুত বর্ধনশীল অর্থনীতির দেশে গ্রাহকের পছন্দের সঙ্গে তাল না মেলাতে পারলে যে শাস্তি পেতে হয় শাওমির শীর্ষস্থান হারানো তারই প্রমাণ। এ রকম আরেকটি উদাহরণ হচ্ছে টাটা মোটরসের ন্যানো কার। ১ হাজার ২০০ ডলার বা ১ লাখ রুপিতে এ গাড়ি কেনা যেত এবং এটিকে বিশ্বের সবচেয়ে সাশ্রয়ীমূল্যের গাড়ির আখ্যা দেয়া হয়। কম দামি হলেও গাড়ির মান ভালো না হওয়ায় গ্রাহক এর ব্যবহার থেকে সরে আসে।\n" +
+                "\n" +
+                "ভিডিও দেখা থেকে শুরু করে কনটেন্ট তৈরিতে ফ্ল্যাগশিপ ডিভাইস ব্যবহারে ভারতীয়দের চাহিদা অন্যদের সুবিধার কারণ হবে। কাউন্টারপয়েন্টের তথ্যানুযায়ী, বিশেষ করে মেটা ও আইফোন উৎপাদনকারী প্রতিষ্ঠান অ্যাপল বেশি লাভবান হবে। কেননা অ্যাপল মূলত বেশি দামের সেলফোন বাজারজাত করে থাকে। যেগুলোর দাম ৬০৫ ডলার থেকে ২ হাজার ৫০০ ডলারের কাছাকাছি। এ কারণে এত দিন ভারতে প্রতিষ্ঠানটির বাজার হিস্যা খুবই কম ছিল।\n" +
+                "\n" +
+                "কাউন্টারপয়েন্টের তথ্যানুযায়ী, ২০২২ সালে ভারতে ১২০ ডলার মূল্যের স্মার্টফোনের বাজার হিস্যা ২৬ শতাংশে নেমে এসেছে। যেখানে দুই বছর আগে এ হার ছিল ৪১ শতাংশ। অন্যদিকে ৩০ হাজার রুপি বা ৩৬০ ডলারের বেশি দামের স্মার্টফোনের বাজার হিস্যা দ্বিগুণ বেড়ে ১১ শতাংশে উন্নীত হয়েছে। শাওমি ও স্যামসাং দুটি প্রতিষ্ঠানই ভারতকে ব্যবসায়িক পরিধি বাড়ানোর অন্যতম বাজার হিসেবে গণ্য করে থাকে। এখানে স্মার্টফোনই সবচেয়ে বেশি বিক্রীত পণ্য। ২০২১-২২ অর্থবছরে ভারত থেকে ৪৮০ কোটি ডলার আয় করেছে চীনের প্রতিষ্ঠান শাওমি। অন্যদিকে স্যামসাংয়ের আয় হয়েছে ১ হাজার ৩০ কোটি ডলার, যার মধ্যে ৬৭০ কোটি ডলার স্মার্টফোন বিক্রির মাধ্যমে এসেছে।\n" +
+                "\n" +
+                "শাওমির ওয়েবসাইটের তথ্য বলছে, গ্রাহক যে ধরনের ডিভাইস চাচ্ছে প্রতিষ্ঠানটি সে রকম কিছু সরবরাহ করতে পারছে না। স্যামসাংয়ের ওয়েবসাইটে যেখানে ৩৬০ ডলারের বেশি মূল্যমানের ১৬টি ডিভাইস রয়েছে সেখানে শাওমি মাত্র ছয়টি ডিভাইস বাজারজাত করেছে। অন্যদিকে ১২০ ডলারের নিচে শাওমির ডিভাইস রয়েছে ৩৯টি। তবে এর অধিকাংশই স্টকে নেই। সেখানে স্যামসাং মাত্র সাতটি মডেল লিপিবদ্ধ করেছে।\n" +
+                "\n" +
+                "কাউন্টারপয়েন্টের তথ্যানুযায়ী, গত দুই বছরে শাওমির মাত্র ১ শতাংশ স্মার্টফোন প্রিমিয়াম ক্যাটাগরির ছিল। যেখানে স্যামসাংয়ের ফ্ল্যাগশিপ ক্যাটাগরির ডিভাইস বাজারজাত দ্বিগুণ বেড়ে ১৩ শতাংশ হয়েছে। তবে বর্তমানে শাওমি প্রিমিয়াম স্মার্টফোন বাজারজাতের মাধ্যমে পণ্যের লাইনআপে পরিবর্তন আনতে কাজ করছে। জানুয়ারিতে প্রতিষ্ঠানটি নোট ১২ সিরিজ বাজারে আনে। এ সিরিজের ডিভাইসগুলোর সর্বোচ্চ মূল্য ৩০ হাজার রুপি। সম্প্রতি শাওমি ১৩ প্রোও বাজারে এসেছে। যার মূল্য ৭৯ হাজার ৯৯৯ রুপি বা ৯৭০ ডলার, যা ভারতের বাজারে সর্বোচ্চ। কৌশলগত এ পরিবর্তনের সুফলও দেখতে পাচ্ছে প্রতিষ্ঠানটি। বাজারে আনার মাত্র দুই সপ্তাহের মধ্যে নোট ১২ সিরিজের বিক্রি ৬ কোটি ১০ লাখ ডলার ছাড়িয়ে গেছে।");
+
+        arrayList.add(hashMap);
+
+
+    }
+    //----------------
+
+
+}
+
+
+package com.example.news_app;
+
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.compose.ui.text.intl.Locale;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+public class News_Description extends AppCompatActivity {
+    ImageView coverImg;
+    TextView titleVar, titledes;
+    FloatingActionButton febButton;
+    public static String TITLEVAR = "";
+    public static String TITLEDES = "";
+    public static Bitmap MY_BitMap = null;// BitMap use another activity picture  insert another activity
+    TextToSpeech textToSpeech;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_news_description);
+        coverImg = findViewById(R.id.coverImg);
+        titleVar = findViewById(R.id.titleVar);
+        titledes = findViewById(R.id.titledes);
+        febButton = findViewById(R.id.febButton);
+
+        titleVar.setText(TITLEVAR);
+        titledes.setText(TITLEDES);
+
+        if (MY_BitMap != null) coverImg.setImageBitmap(MY_BitMap);
+
+        textToSpeech = new TextToSpeech(News_Description.this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+
+
+            }
+        });
+
+
+        febButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String tex = titledes.getText().toString();
+                textToSpeech.speak(tex, TextToSpeech.QUEUE_FLUSH, null, null);
+
+
+            }
+        });
+
+
+    }
+}
