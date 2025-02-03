@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2"
+    android:orientation="vertical">
+
+
+   <LinearLayout
+       android:id="@+id/lay1"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       >
+       <Button
+           android:id="@+id/dataload"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Load Data" />
+       <ProgressBar
+           android:id="@+id/progressbar"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:visibility="invisible"
+           />
+   </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:background="#F6F6F6"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="25sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
+        <TextView
+            android:id="@+id/tvname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginLeft="20dp"
+            android:textSize="25sp"
+            android:layout_marginRight="20dp"
+            android:background="@android:color/holo_green_light"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mobile"
+            android:textSize="25sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
+        <TextView
+            android:id="@+id/tvmobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginLeft="20dp"
+            android:textSize="25sp"
+            android:layout_marginRight="20dp"
+            android:background="@android:color/holo_green_light"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="25sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
+        <TextView
+            android:id="@+id/tvemail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginLeft="20dp"
+            android:textSize="25sp"
+            android:layout_marginRight="20dp"
+            android:background="@android:color/holo_green_light"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address"
+            android:textSize="25sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            />
+        <TextView
+            android:id="@+id/tvaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginLeft="20dp"
+            android:textSize="25sp"
+            android:layout_marginRight="20dp"
+            android:background="@android:color/holo_green_light"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+
+
+
+
+
+package com.example.use_database;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class MainActivity2 extends AppCompatActivity {
+    Button dataload;
+    TextView tvname,tvmobile,tvemail,tvaddress;
+    ProgressBar progressbar;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+
+        dataload=findViewById(R.id.dataload);
+        tvname=findViewById(R.id.tvname);
+        tvmobile=findViewById(R.id.tvmobile);
+        tvemail=findViewById(R.id.tvemail);
+        tvaddress=findViewById(R.id.tvaddress);
+        progressbar=findViewById(R.id.progressbar);
+
+
+        dataload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressbar.setVisibility(View.VISIBLE);
+
+
+                RequestQueue queue = Volley.newRequestQueue(MainActivity2.this);
+                String url = "http://192.168.0.138/Apps/sayeed1.json";
+
+// Request a string response from the provided URL.
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                // Display the first 500 characters of the response string.
+                                progressbar.setVisibility(View.GONE);
+
+                                try {
+                                    JSONObject jsonObject=new JSONObject(response);
+                                    String name=jsonObject.getString("name");
+                                    String mobile=jsonObject.getString("mobile");
+                                    String email=jsonObject.getString("email");
+                                    String address=jsonObject.getString("address");
+
+
+                                    tvname.setText(name);
+                                    tvmobile.setText(mobile);
+                                    tvemail.setText(email);
+                                    tvaddress.setText(address
+                                    );
+
+
+
+
+                                } catch (JSONException e) {
+                                    throw new RuntimeException(e);
+                                }
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                       dataload.setText("Volly errror");
+                        progressbar.setVisibility(View.GONE);
+                    }
+                });
+
+// Add the request to the RequestQueue.
+                queue.add(stringRequest);
+
+
+            }
+        });
+
+
+
+
+    }
+}
