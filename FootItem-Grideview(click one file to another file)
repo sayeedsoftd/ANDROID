@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+ <ImageView
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:src="@drawable/second"
+   android:layout_marginBottom="10dp"
+     android:scaleType="centerCrop"
+     android:padding="10dp"
+
+  />
+
+ <GridView
+     android:id="@+id/grideview"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:numColumns="2"
+     android:verticalSpacing="10dp"
+     android:horizontalSpacing="10dp"
+     android:stretchMode="columnWidth"
+     android:gravity="center"
+     />
+
+</LinearLayout>
+
+
+
+
+package com.example.food_item;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionBarPolicy;
+import androidx.cardview.widget.CardView;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class MainActivity extends AppCompatActivity {
+    GridView grideview;
+    ArrayList<HashMap<String,String>> arrayList=new ArrayList<>();
+    HashMap<String,String> hashMap;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        grideview=findViewById(R.id.grideview);
+
+
+
+
+
+
+        myTable();
+        MyAdapter myAdapter=new MyAdapter();
+        grideview.setAdapter(myAdapter);
+
+
+
+
+    }
+    //---------------------------------------------------------
+    private class MyAdapter extends BaseAdapter{
+
+        @Override
+        public int getCount() {
+            return arrayList.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            LayoutInflater layoutInflater= (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View myview=layoutInflater.inflate(R.layout.new_layout,viewGroup,false);//anpther xml insert
+///--------------------------------------------------------------
+
+            LinearLayout mainid=myview.findViewById(R.id.mainid);
+
+            ImageView imageview=myview.findViewById(R.id.imageview);
+            TextView textView2=myview.findViewById(R.id.textView2);
+
+
+            //------------------------------------------------
+            HashMap<String,String> hashMap1=arrayList.get(i);
+            textView2.setText(hashMap1.get("name"));
+            String image_url=hashMap1.get("image_url");
+
+
+            //---------
+
+            Picasso.get().load(image_url).into(imageview);//load online picture
+            //---------
+
+            //----------------------------use one grideview to another page
+            mainid.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(i == 0){
+                        Intent intent=new Intent(MainActivity.this, Item0.class);
+                        startActivity(intent);
+                    }
+                    else if(i == 1){
+                        Intent intent=new Intent(MainActivity.this, Chicken.class);
+                        startActivity(intent);
+
+                    }
+                    else if(i == 2){
+                    }
+                    else {
+
+                    }
+
+
+                }
+            });
+            ///--------------------------------------------------------------
+
+
+
+            return myview;
+        }
+    }
+    public void myTable(){
+
+        hashMap=new HashMap<>();
+        hashMap.put("name","BURGER");
+//Must be insert picasso file 
+        hashMap.put("image_url","https://www.eatthis.com/wp-content/uploads/sites/4/2022/02/eating-a-burger.jpg?quality=82&strip=1&w=640");
+
+        arrayList.add(hashMap);
+
+        hashMap=new HashMap<>();
+        hashMap.put("name","CHICKEN");
+        hashMap.put("image_url","https://cdn.britannica.com/18/137318-050-29F7072E/rooster-Rhode-Island-Red-roosters-chicken-domestication.jpg?w=300");
+
+
+        arrayList.add(hashMap);
+
+    }
+    //---------------------------------------------------------
+}
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/mainid"
+
+    >
+    <androidx.cardview.widget.CardView
+        android:id="@+id/clickit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+
+
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/fist"
+                android:layout_margin="10dp"
+
+
+                />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:gravity="center"
+
+
+               />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
+
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Item0"
+    android:orientation="vertical"
+    android:background="@android:color/holo_red_light"
+    >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:src="@drawable/burger"
+                            android:layout_marginTop="10dp"
+                            />
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="একটি বার্গার প্রোটিনের একটি ভাল উৎস প্রদান করতে পারে, তবে এর প্রাথমিক ক্ষতির মধ্যে রয়েছে উচ্চ ক্যালোরি এবং চর্বিযুক্ত উপাদান, প্রায়শই স্যাচুরেটেড ফ্যাট থেকে, যা অতিরিক্ত পরিমাণে খাওয়া হলে কোলেস্টেরলের মাত্রা বৃদ্ধি এবং সম্ভাব্য হৃদরোগের ঝুঁকিতে অবদান রাখতে পারে;"
+
+                            android:textColor="@color/white"
+                            android:textSize="25sp"
+                            android:padding="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_margin="10dp"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1 . You may experience weight gain."
+
+
+                            android:textColor="@android:color/holo_green_light"
+                            android:textSize="30sp"
+                            android:padding="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_margin="10dp"
+                            />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:src="@drawable/waight"
+                            android:layout_marginTop="10dp"
+                            android:scaleType="centerCrop"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="A quarter-pound Whopper with cheese from Burger King packs 740 calories, 57% of which come from fat. For some perspective, a moderately active woman between the ages of 26 and 50 needs 2,000 calories per day, according to the Dietary Guidelines for Americans 2020-2025. That fast-food burger is almost half of all the calories your body needs to operate for a day."
+
+                            android:textColor="@color/white"
+                            android:textSize="25sp"
+                            android:padding="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_margin="10dp"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="2 . Your cholesterol will likely rise."
+
+                            android:textColor="@android:color/holo_green_light"
+                            android:textSize="30sp"
+                            android:padding="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_margin="10dp"
+                            />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:src="@drawable/eating"
+                            android:layout_marginTop="10dp"
+                            android:scaleType="centerCrop"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                           android:text="We recommend limiting red meat and reducing the amount of fatty red meats because they are high in saturated fats which can raise levels of LDL low-density lipoprotein says Julia Zumpano RD LD who specializes in preventative cardiology and rehabilitation in the Medical Nutrition Therapy Department at the Cleveland Clinic."
+
+                            android:textColor="@color/white"
+                            android:textSize="25sp"
+                            android:padding="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_margin="10dp"
+                            />
+
+                        <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="3 . You'll have an increased risk of diabetes."
+
+                            android:textColor="@android:color/holo_green_light"
+                        android:textSize="30sp"
+                        android:padding="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_margin="10dp"
+                        />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:src="@drawable/test"
+                            android:layout_marginTop="10dp"
+                            android:scaleType="centerCrop"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="When you eat a lot of hamburgers from fast-food joints or cooked at home, you're also ingesting a lot of sugar in the form of high fructose corn syrup (HFCS) with condiments like ketchup, barbecue sauce, pickle relish, and even the bun. This inexpensive corn sweetener is notorious for quickly raising blood sugar. Over time, high blood sugar can lead to insulin resistance and pre-diabetes, and eventually full-blown type 2 diabetes. The fact that most burger buns are made with bleached white flour, which is devoid of fiber, doesn't help either."
+
+                            android:textColor="@color/white"
+                            android:textSize="25sp"
+                            android:padding="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_margin="10dp"
+                            />
+
+
+
+                </LinearLayout>
+
+        </ScrollView>
+
+
+    
+
+
+
+</LinearLayout>
+
+
+
+
+
+package com.example.food_item;
+
+import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class Item0 extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_item0);
+
+
+    }
+}
+
+
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Chicken"
+    android:background="@android:color/holo_orange_dark">
+
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       >
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           >
+           <ImageView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:src="@drawable/chicken"
+              android:layout_marginTop="-38dp"
+               android:padding="5dp"
+               />
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="10dp"
+               android:textSize="25sp"
+               android:textColor="@color/white"
+               android:text="The classification of today’s chicken (Gallus gallus domesticus) recognizes its primary origin, the Red Junglefowl. Domestication probably occurred 7,000-10,000 years ago in Southeast Asia and Oceana.
+
+Distribution of Chickens occurred rapidly and was widespread because of their ability to provide meat and eggs without being competitive for human food sources. But it is believed that the sport of Cockfighting was the principle reason for dispersion of chickens.
+
+The Auracana, originally found in Auracania region of Chile continues to provide confusion. Some scientists believe that it was Pre-Columbian and originally from Polynesia. But DNA evidence disputes this theory."
+
+               android:padding="5dp"
+               />
+           <ImageView
+               android:layout_width="match_parent"
+               android:layout_height="220dp"
+               android:src="@drawable/chicken2"
+              android:scaleType="center"
+               android:padding="5dp"
+               />
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="10dp"
+               android:textSize="25sp"
+               android:textColor="@color/white"
+              android:text="Much of the credit for Hybrid Layers can be given to Henry A. Wallace, the founder of Pioneer hybrid seed corn company in 1926. The successes achieved in corn led Wallace to believe that similar gains could be achieved with the laying hen. In 1936 Wallace established Hy-Line poultry genetics on his farm in Iowa. In 1944 the DeKalb seed corn company began development of its own hybrid layers. Universities and other hatcheries also started their own lines of hybrid layers, giving us the Wisco White and the California White."
+
+               android:padding="5dp"
+               />
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="CALCULATION"
+               android:gravity="center"
+               android:textColor="@color/black"
+               android:textSize="30sp"
+               />
+
+           <EditText
+               android:id="@+id/editTextWeight"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="Enter weight"
+               android:gravity="center"
+               android:textColorHint="@color/white"
+               android:inputType="numberDecimal" />
+
+           <EditText
+               android:id="@+id/editTextPrice"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="Enter price per unit"
+               android:textColorHint="@color/white"
+               android:inputType="numberDecimal"
+               android:gravity="center"/>
+
+           <Button
+               android:id="@+id/buttonCalculate"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Calculate" />
+
+           <TextView
+               android:id="@+id/textViewResult"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Total Price: "
+               android:textSize="25sp"
+               android:textColor="@color/white"
+               android:textStyle="bold"
+               android:paddingTop="16dp" />
+           <TextView
+
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="
+
+
+" />
+
+       </LinearLayout>
+   </ScrollView>
+
+</LinearLayout>
+
+
+
+
+package com.example.food_item;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class Chicken extends AppCompatActivity {
+    private EditText editTextWeight;
+    private EditText editTextPrice;
+    private Button buttonCalculate;
+    private TextView textViewResult;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_chicken);
+
+        editTextWeight = findViewById(R.id.editTextWeight);
+        editTextPrice = findViewById(R.id.editTextPrice);
+        buttonCalculate = findViewById(R.id.buttonCalculate);
+        textViewResult = findViewById(R.id.textViewResult);
+
+        buttonCalculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calculateTotalPrice();
+            }
+        });
+    }
+
+    private void calculateTotalPrice() {
+        String weightStr = editTextWeight.getText().toString();
+        String priceStr = editTextPrice.getText().toString();
+
+        if (weightStr.isEmpty() || priceStr.isEmpty()) {
+            Toast.makeText(Chicken.this, "Please enter both weight and price", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            double weight = Double.parseDouble(weightStr);
+            double price = Double.parseDouble(priceStr);
+            double totalPrice = weight * price;
+
+            textViewResult.setText("Total Price: " + totalPrice);
+        } catch (NumberFormatException e) {
+            Toast.makeText(Chicken.this, "Invalid input", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+    }
+}
+
+
+
+
+
