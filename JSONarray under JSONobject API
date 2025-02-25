@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@color/design_default_color_secondary_variant">
+
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text=""
+        android:textColor="@color/white"
+        />
+
+
+</LinearLayout>
+
+
+
+
+
+package com.example.complexjsonarrayapi;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class MainActivity extends AppCompatActivity {
+
+    TextView textview;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+       // progressbar=findViewById(R.id.progressbar);
+        textview=findViewById(R.id.textview);
+        String url="https://sayeed210088.xyz/App/complex.json";
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                //progressbar.setVisibility(View.GONE);
+                Log.d("serverres",response.toString());
+                try {
+                    String name=response.getString("name");
+                    String age=response.getString("age");
+
+                    textview.append(name);
+                    textview.append("\n");
+                    textview.append(age);
+
+                    JSONArray jsonArray=response.getJSONArray("video");
+                   for (int x=0;x<jsonArray.length();x++){
+                       JSONObject jsonObject=jsonArray.getJSONObject(0);
+                       String title=jsonObject.getString("title");
+                       String video_id=jsonObject.getString("video_id");
+                       textview.append("\n");
+
+                       textview.append(title);
+                       textview.append("\n");
+                       textview.append(video_id);
+
+                       /*
+                       * JSONArray imageArray=jsonObject.getJSONArray("images");
+                       *  for (int x=0;x<jsonArray.length();x++){
+                       * String image_url=imageArray.getString(x);
+                       * textview.append(image_url);
+                       *
+                       * }
+                       *
+                       * */
+                   }
+
+
+
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                textview.setText("show error ");
+
+            }
+        });
+        RequestQueue requestQueue= Volley.newRequestQueue(MainActivity.this);
+        requestQueue.add(jsonObjectRequest);
+
+    }
+}
