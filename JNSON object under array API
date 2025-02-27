@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        />
+</LinearLayout>
+
+
+
+
+
+package com.example.helpofserver_play_video;
+
+import static androidx.fragment.app.FragmentManager.TAG;
+
+import android.os.Bundle;
+import android.os.Message;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.arch.core.executor.ArchTaskExecutor;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class MainActivity extends AppCompatActivity {
+    ProgressBar progressbar;
+    ListView listview;
+    ArrayList<HashMap<String,String>> arrayList=new ArrayList<>();
+    HashMap<String,String> hashMap;
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        progressbar=findViewById(R.id.progressbar);
+        listview=findViewById(R.id.listview);
+
+
+
+        String url="https://sayeed210088.xyz/App/arrayperse.json";
+
+        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        progressbar.setVisibility(View.GONE);
+                        try {
+
+
+                            for (int x=0;x<response.length();x++)
+                            {
+                                JSONObject jsonObject=response.getJSONObject(x);
+                                String title=jsonObject.getString("title");
+                                String video_id=jsonObject.getString("video_id");
+                                //textView.append(title+'\n'+video_id+'\n');
+                                hashMap=new HashMap<>();
+                                hashMap.put("title",title);
+                                hashMap.put("video_id",video_id);
+                                arrayList.add(hashMap);
+
+                            }
+
+
+                            Myadapter myadapter=new Myadapter();
+                            listview.setAdapter(myadapter);
+
+
+                        }
+                        catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressbar.setVisibility(View.GONE);
+
+                    }
+                });
+        RequestQueue requestQueue=Volley.newRequestQueue(MainActivity.this);
+        requestQueue.add(arrayRequest);
+
+
+
+
+
+
+
+    }
+    //===========================================
+    private class Myadapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return arrayList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater layoutInflater=getLayoutInflater();
+            View myview=layoutInflater.inflate(R.layout.new_layout,null);
+
+            TextView textView=myview.findViewById(R.id.textView);
+            ImageView imageView=myview.findViewById(R.id.imageView);
+
+
+            HashMap<String,String> hashMap1=arrayList.get(position);
+            String title=hashMap1.get("title");
+            String video_id=hashMap1.get("video_id");
+            //https://img.youtube.com/vi/<insert-youtube-video-id-here>/0.jpg
+            String image_url="https://img.youtube.com/vi/"+video_id+"/0.jpg";
+
+
+            textView.setText(title);
+            Picasso.get().load(image_url).into(imageView);
+
+
+
+
+            return myview;
+        }
+    }
+}
+
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+</LinearLayout>
+
+
+
+
