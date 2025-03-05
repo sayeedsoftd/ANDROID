@@ -1,0 +1,15 @@
+<?php
+
+$hostname = "localhost";
+$dbusername = "sayeedxy_bd_user";
+$password = "bdNN;-D-mJsF";
+$database = "sayeedxy_bd_db";
+
+$con = mysqli_connect($hostname,$dbusername,$password,$database);
+
+if (mysqli_connect_errno()){
+    echo "Connection Faild <br> " . mysqli_connect_error();
+} else {
+    echo "Database Connected";
+}
+?>
