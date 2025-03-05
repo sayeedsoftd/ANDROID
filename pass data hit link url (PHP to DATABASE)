@@ -1,0 +1,34 @@
+
+********link-------https://sayeed210088.xyz/sayeed/db.php?n=sayeed&m=0189........&e=rahima@gmail.com
+?=header
+n,m,e=key
+sayeed,018......,rahima@gmail.com==value**********
+
+
+<?php
+
+$hostname = "localhost";
+$dbusername = "sayeedxy_bd_user";
+$password = "bdNN;-D-mJsF";
+$database = "sayeedxy_bd_db";
+
+$con = mysqli_connect($hostname,$dbusername,$password,$database);
+
+
+$name=$_GET['n'];
+$mobile=$_GET['m'];
+$email=$_GET['e'];
+
+if (mysqli_connect_errno()){
+    echo "Connection Faild <br> " . mysqli_connect_error();
+} else {
+    echo "Database Connected";
+}
+$sql="insert into bd_user(name,mobile,email) values('$name','$mobile','$email')";
+$result=mysqli_query($con,$sql);
+if($result)
+echo"<br>true";
+else 
+echo "<br>false";
+
+?>
