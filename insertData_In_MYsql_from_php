@@ -1,0 +1,22 @@
+<?php
+
+$hostname = "localhost";
+$dbusername = "sayeedxy_bd_user";
+$password = "bdNN;-D-mJsF";
+$database = "sayeedxy_bd_db";
+
+$con = mysqli_connect($hostname,$dbusername,$password,$database);
+
+if (mysqli_connect_errno()){
+    echo "Connection Faild <br> " . mysqli_connect_error();
+} else {
+    echo "Database Connected";
+}
+$sql="insert into bd_user(name,mobile,email) values('sanjida','01632386966','sanjida@gmail.com')";
+$result=mysqli_query($con,$sql);
+if($result)
+echo"<br>true";
+else 
+echo "<br>false";
+
+?>
