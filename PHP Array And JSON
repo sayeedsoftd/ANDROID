@@ -1,0 +1,22 @@
+<?php
+
+header('Content-Type: application/json; charset=utf-8');    //This line  use convert php to json ***(php header for json)
+
+$data=array();
+
+$userinfo=array(
+    "name"=>"abu sayeed",
+    "mobile"=>"01762525468",
+    "email"=>"@yahoo"
+);
+array_push($data,$userinfo);
+$userinfo=array(
+    "name"=>"sayeed",
+    "mobile"=>"01862678468",
+    "email"=>"@gmail"
+);
+array_push($data,$userinfo);
+echo json_encode($data);
+
+
+?>
